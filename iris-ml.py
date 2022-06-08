@@ -27,7 +27,7 @@ df = user_input_features()
 st.subheader('User Input parameters')
 st.write(df)
 
-iris = datasets.load_iris()
+iris = pd.read_csv("./irisexercise/IRIS.csv")
 X = iris.data
 Y = iris.target
 
