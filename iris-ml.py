@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from sklearn import datasets
+
 from sklearn.ensemble import RandomForestClassifier
 
 st.write("""
@@ -29,8 +29,9 @@ st.write(df)
 
 url = "https://raw.githubusercontent.com/nurulizzahzambri/irisexercise/main/IRIS.csv"
 iris = pd.read_csv(url)
-X = iris.data
-Y = iris.target
+
+X = iris[['sepal_length','sepal_width','petal_length','petal_width']]
+Y = iris['species']
 
 clf = RandomForestClassifier()
 clf.fit(X, Y)
@@ -39,11 +40,11 @@ prediction = clf.predict(df)
 prediction_proba = clf.predict_proba(df)
 
 st.subheader('Class labels and their corresponding index number')
-st.write(iris.target_names)
+st.write(iris['species'].unique())
 
 st.subheader('Prediction')
-st.write(iris.target_names[prediction])
-#st.write(prediction)
+#st.write(iris.target_names[prediction])
+st.write(prediction)
 
 st.subheader('Prediction Probability')
 st.write(prediction_proba)
